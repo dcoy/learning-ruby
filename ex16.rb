@@ -3,15 +3,14 @@
 
 filename = ARGV.first
 # Let's read the file first
-puts "First, we are going to output the original contents:"
+puts '#########################################################'
+puts "\nFirst, we are going to output the original contents:"
 file = open(filename)
-print '########################'
 print "\n"
-print "#"
 print file.read
-print "\n"
-print '########################'
 puts "\n"
+print '#########################################################'
+print "\n\n"
 # Now we can truncate the contents of the file
 puts "Now, we're going to erase #{filename}"
 puts "If you don't want that, hit CTRL-C (^C)."
@@ -22,7 +21,7 @@ $stdin.gets
 puts "Opening the file..."
 target = open(filename, 'w')
 
-puts "Truncating the file.  Goodbye!"
+puts "Truncating the file.  DELETED!"
 target.truncate(0)
 
 puts "Now I'm going to ask you for three lines."
@@ -42,6 +41,15 @@ target.write(line2)
 target.write("\n")
 target.write(line3)
 target.write("\n")
+target.close
 
-puts "And finally, we close it."
+puts "\n#########################################################"
+puts "\nNow, we are going to output the new contents of the file:"
+file = open(filename)
+print "\n"
+print file.read
+puts "\n"
+puts "#########################################################"
+
+puts "\nAnd finally, we close it."
 target.close
