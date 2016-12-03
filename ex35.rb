@@ -6,7 +6,7 @@ def gold_room
   print "> "
   choice = $stdin.gets.chomp
 
-  # this line has a bug, so fix it
+  # bug fixed, use 'is_a?' to determine if input is an Integer
   if choice.to_i.is_a? Integer
     how_much = choice.to_i
   else
