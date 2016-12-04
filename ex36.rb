@@ -4,7 +4,7 @@
 # Refactor with case statements rather than if/elsif/else statements
 
 # Start of the game
-def start
+def game_start
   choices = ["flee", "fight", "paralyzed", "faint", "hide"]
 
   puts "Stands before you is the evil that is Cthulu."
@@ -20,17 +20,77 @@ def start
 
   # Use switch statement when refactoring
   if choice == "flee"
-    flee_choice
+    start_choice.flee_choice
   elsif choice == "fight"
-    fight_choice
+    start_choice.fight_choice
   elsif choice == "paralyzed"
-    paralyzed_choice
+    start_choice.paralyzed_choice
   elsif choice == "faint"
-    faint_choice
+    start_choice.faint_choice
   elsif choice == "hide"
-    hide_choice
+    start_choice.hide_choice
   else
     dead("Hey buddy, you're dead!  You succumbed to Cthulhu.")
+  end
+end
+
+def start_choice
+  def fight_choice
+    weapons = ['stick', 'axe', 'gun', 'portal gun']
+
+    puts "You chose to fight, which weapon do you choose?"
+
+    weapons.each do |item|
+      puts "The #{item}"
+    end
+
+    # puts "You see around you four weapons: #{weapons}, which do you choose?"
+    print "> "
+    choice = $stdin.gets.chomp
+
+    # Refactor to case statement
+    if choice.include?('stick')
+      weapon_choice.stick
+    elsif choice.include?('axe')
+      weapon_choice.axe
+    elsif choice.include?('gun')
+      weapon_choice.gun
+    elsif choice.include?('portal')
+      weapon_choice.portal_gun
+      # Bug - When choose portal gun, gun choice will trigger
+    else
+      outcome.dead("That wasn't an option!")
+    end
+  end
+
+  def flee_choice
+    outcome.win("You flee!");
+    puts "You're back where you started."
+    game_start
+  end
+
+  def paralyzed_choice
+    outcome.dead("You become paralyzed with fear, hoping Cthulhu's eyesight is based on movement.  It's not, you're dead.")
+  end
+
+  def faint_choice
+    outcome.win("You faint, causing Cthulhu to become disinterested in your soul.")
+  end
+
+  def hide_choice
+    outcome.dead("You attempt to hide, but Cthulhu can smell your pungent fear.")
+  end
+end
+
+def outcome
+  # Dead!
+  def dead(why)
+    puts why, "Try again next time!"
+    exit(0)
+  end
+  # Alive!
+  def win(why)
+    puts why, "You survived!"
   end
 end
 
@@ -49,85 +109,27 @@ def weapon_choice
 
     # Refactor to case statement
     if choice == 1
-      dead("You shoot wildly at Cthulhu, but miss terribly.  Cthulhu devours your soul.")
+      outcome.dead("You shoot wildly at Cthulhu, but miss terribly.  Cthulhu devours your soul.")
     elsif choice == 2
-      dead("You shoot at Cthulhu's body, creating a gaping hole in its chest. It rushes towards you, angrily.")
+      outcome.dead("You shoot at Cthulhu's body, creating a gaping hole in its chest. It rushes towards you, angrily.")
     elsif choice == 3
-      puts win("You shoot at Cthulhu's feet, causing it to fall into the portal, momentarily allowing you to escape.")
+      outcome.win("You shoot at Cthulhu's feet, causing it to fall into the portal, momentarily allowing you to escape.")
     else choice == 4
-      dead("You open a portal at your feet, and fall through to your death.")
+      outcome.dead("You open a portal at your feet, and fall through to your death.")
     end
   end
 
-  def flee_choice
-    win("You flee!");
-    puts "You're back where you started."
-    start
-  end
-
   def stick
-    dead("Well, that was a bad choice.")
+    outcome.dead("Well, that was a bad choice.")
   end
 
   def gun
-    dead("Cthulhu's hide cannot be pierced by mortal weapons.")
+    outcome.dead("Cthulhu's hide cannot be pierced by mortal weapons.")
   end
 
   def axe
-    dead("While a bold choice, Cthulhu's hide cannot be pierced by mortal weapons.")
-  end
-
-end
-
-def paralyzed_choice
-  dead("You become paralyzed with fear, hoping Cthulhu's eyesight is based on movement.  It's not, you're dead.")
-end
-
-def faint_choice
-  win("You faint, causing Cthulhu to become disinterested in your soul.")
-end
-
-def hide_choice
-  dead("You attempt to hide, but Cthulhu can smell your pungent fear.")
-end
-
-def fight_choice
-  weapons = ['stick', 'axe', 'gun', 'portal gun']
-
-  puts "You chose to fight, which weapon do you choose?"
-
-  weapons.each do |item|
-    puts "The #{item}"
-  end
-
-  # puts "You see around you four weapons: #{weapons}, which do you choose?"
-  print "> "
-  choice = $stdin.gets.chomp
-
-  # Refactor to case statement
-  if choice.include?('stick')
-    weapon_choice.stick
-  elsif choice.include?('axe')
-    weapon_choice.axe
-  elsif choice.include?('gun')
-    puts "#{choice}"
-  elsif choice.include?('portal')
-    weapon_choice.portal_gun
-  else
-    dead("That wasn't an option!")
+    outcome.dead("While a bold choice, Cthulhu's hide cannot be pierced by mortal weapons.")
   end
 end
 
-# Dead!
-def dead(why)
-  puts why, "Try again next time!"
-  exit(0)
-end
-
-# Alive!
-def win(why)
-  puts why, "You survived!"
-  exit(0)
-end
-
-start
+game_start
