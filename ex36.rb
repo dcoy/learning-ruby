@@ -36,7 +36,7 @@ end
 
 def start_choice
   def fight_choice
-    weapons = ['stick', 'axe', 'gun', 'portal gun']
+    weapons = ['stick', 'axe', 'rifle', 'portal gun']
 
     puts "You chose to fight, which weapon do you choose?"
 
@@ -53,8 +53,8 @@ def start_choice
       weapon_choice.stick
     elsif choice.include?('axe')
       weapon_choice.axe
-    elsif choice.include?('gun')
-      weapon_choice.gun
+    elsif choice.include?('rifle')
+      weapon_choice.rifle
     elsif choice.include?('portal')
       weapon_choice.portal_gun
       # Bug - When choose portal gun, gun choice will trigger
@@ -123,7 +123,7 @@ def weapon_choice
     outcome.dead("Well, that was a bad choice.")
   end
 
-  def gun
+  def rifle
     outcome.dead("Cthulhu's hide cannot be pierced by mortal weapons.")
   end
 
