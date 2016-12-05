@@ -42,4 +42,48 @@ yield = pause and trasnfer control to the code block = yield
 
 SYMDOC
 
+dtypes = <<DATATYPE
+type = description = example
+true = true boolean value = true or false == true
+false = false boolean value = false and true == false
+nil = represents "nothing" or "no value" = x = nil
+strings = stores textual informatino = x = "Hello"
+numbers = stores integers = i = 100
+floats = stores decimals = i = 100.12
+arrays = stores a list of things = j = [1, 2, 3, 4]
+hashes = stores a key=value mapping of things = e = {'x' => 1, 'y' => 2}
+
+DATATYPE
+
+operators = <<OPRTRS
+operator = description = example
++ = add = 2 + 4 == 6
+- = subtract = 2 - 4 == -2
+* = multiply = 2 * 4 == 8
+** = powerof = 2 ** 4 == 16
+/ = divide = 2 / 4.0 == 0.5
+% = modulus = 2 % 4 == 2
+> = greater than = 4 > 4 == false
+. = dot access = "1".to_i == 1
+:: = colon access = Module::Class
+[] = list brackets = [1,2,3,4]
+! = not = !true == false
+< = less than = 4 < 4 == false
+>= = greater than or equal = 4 >= 4 == true
+<= = less than or equal = 4 <= 4 == true
+<=> = comparison = 4 <=> 4 == 0
+== = equal = 4 == 4 == true
+!= = not equal = 4 != 4 == false
+&& = logical and (higher precedence) = true && false == false
+|| = logical or(higher precedence) = true || false = true
+.. = range inclusive = (0..3).to_a == [0, 1, 2, 3]
+... = range non-inclusive = (0.3).to_a == [0, 1, 2]
+@ = object scope = @var ; @@classvar
+@@ = class scope = @var ; @@classvar
+$ = global scope = $stdin
+
+OPRTRS
+
 puts symbols
+puts dtypes
+puts operators
