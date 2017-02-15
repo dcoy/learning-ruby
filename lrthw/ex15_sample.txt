@@ -1,3 +1,0 @@
-Here's a bit of text I've added to this file.
-This is the second line of my text file.
-And a third!
