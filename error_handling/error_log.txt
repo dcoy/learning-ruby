@@ -1,0 +1,5 @@
+Error: undefined method `+' for nil:NilClass
+Error: undefined method `+' for nil:NilClass at 2017-04-27 12:53:56 -0500
+Error: undefined method `*' for nil:NilClass at 2017-04-27 12:54:31 -0500
+Error: undefined method `/' for nil:NilClass at 2017-04-27 12:54:43 -0500
+Error: divided by 0 at 2017-04-27 12:54:56 -0500
