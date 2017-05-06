@@ -1,0 +1,4 @@
+source "https://rubygems.org"
+
+# 2.0.0.rc2 required due to conflicting Sinatra - rack dependencies
+gem 'sinatra', '2.0.0.rc2'
